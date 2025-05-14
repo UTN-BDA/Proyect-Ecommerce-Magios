@@ -1,0 +1,86 @@
+services:
+  ecomerce:
+    build:
+      context: ../app-commerce
+      dockerfile: Dockerfile
+    container_name: ecomerce
+    ports:
+      - 5000:5000
+    networks:
+      - mired
+    environment:
+      - FLASK_CONTEXT=${FLASK_CONTEXT}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DB=${REDIS_DB}
+      - MSCATALOGO_URL=${MSCATALOGO_URL}
+      - MSPAGOS_URL=${MSPAGOS_URL}
+      - MSINVENTARIOS_URL=${MSINVENTARIOS_URL}
+
+  mscatalogo:
+    build:
+      context: ../ms-catalogo
+      dockerfile: Dockerfile
+    container_name: mscatalogo
+    depends_on:
+      - ecomerce
+    ports:
+      - 5001:5000
+    networks:
+      - mired
+    environment:
+      - FLASK_CONTEXT=${FLASK_CONTEXT}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DB=${REDIS_DB}
+      - TEST_DATABASE_URI=${TEST_DATABASE_URI}
+      - DEV_DATABASE_URI=${DEV_DATABASE_URI}
+      - PROD_DATABASE_URI=${PROD_DATABASE_URI}
+
+  mspagos:
+    build:
+      context: ../ms-pagos
+      dockerfile: Dockerfile
+    container_name: mspagos
+    depends_on:
+      - ecomerce
+    ports:
+      - 5002:5000
+    networks:
+      - mired
+    environment:
+      - FLASK_CONTEXT=${FLASK_CONTEXT}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DB=${REDIS_DB}
+      - TEST_DATABASE_URI=${TEST_DATABASE_URI}
+      - DEV_DATABASE_URI=${DEV_DATABASE_URI}
+      - PROD_DATABASE_URI=${PROD_DATABASE_URI}
+
+  msinventarios:
+    build:
+      context: ../ms-inventario
+      dockerfile: Dockerfile
+    container_name: msinventarios
+    depends_on:
+      - ecomerce
+    ports:
+      - 5004:5000
+    networks:
+      - mired
+    environment:
+      - FLASK_CONTEXT=${FLASK_CONTEXT}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DB=${REDIS_DB}
+      - TEST_DATABASE_URI=${TEST_DATABASE_URI}
+      - DEV_DATABASE_URI=${DEV_DATABASE_URI}
+      - PROD_DATABASE_URI=${PROD_DATABASE_URI}
+
+networks:
+  mired:
+    external: true

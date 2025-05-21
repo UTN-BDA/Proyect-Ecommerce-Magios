@@ -1,0 +1,7 @@
+FLASK_CONTEXT=development
+DEV_DATABASE_URI=postgresql://usuario:contraseña@host_postgres:5432/nombre_base_datos
+
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_DB=0
+REDIS_PASSWORD=

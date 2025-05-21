@@ -1,0 +1,24 @@
+
+POSTGRES_USER=tu_usuario_postgres
+POSTGRES_PASSWORD=tu_contraseña_postgres
+POSTGRES_DB=nombre_de_tu_base_de_datos
+
+# -------- CONTEXTO FLASK --------
+FLASK_CONTEXT=development 
+
+# -------- REDIS CONFIG --------
+REDIS_HOST=host_de_redis
+REDIS_PORT=6379
+REDIS_PASSWORD=contraseña_de_redis
+REDIS_DB=0 
+
+# -------- POSTGRES CONFIG --------
+# Formato: postgresql://usuario:contraseña@host:puerto/base_de_datos
+TEST_DATABASE_URI=postgresql://usuario:contraseña@host_postgres:5432/nombre_base_datos
+DEV_DATABASE_URI=postgresql://usuario:contraseña@host_postgres:5432/nombre_base_datos
+PROD_DATABASE_URI=postgresql://usuario:contraseña@host_postgres:5432/nombre_base_datos
+
+# -------- URLs DE MICROSERVICIOS --------
+MSCATALOGO_URL=http://mscatalogo:5000
+MSPAGOS_URL=http://mspagos:5000
+MSINVENTARIOS_URL=http://msinventarios:5000

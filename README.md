@@ -1,23 +1,93 @@
-# Proyect-Ecommerce-Magios
-Por el momento hemos decidido hacer un proyecto de comercio electrónico y en principi de un solo producto
-Dejamos la posibilidad de que el proyecto se tranforme de a cuerdo a la complejidad que requiera
+# 🛒 Proyecto Ecommerce - Magios
 
-Write-Host "PASO 1: Entrando a docker-postgresql"
-Set-Location "./docker-postgresql"
+Aplicación web de comercio electrónico basada en microservicios. Actualmente permite operar con un único producto, pero está preparada para escalar su complejidad según los requerimientos del proyecto.
 
-Write-Host "PASO 2: Levantando PostgreSQL"
-docker-compose --env-file .env up --build -d
+---
 
-Write-Host "PASO 3: Volviendo al directorio base y entrando a docker-redis"
-Set-Location "../docker-redis"
+## 🚀 Tecnologías principales
 
-Write-Host "PASO 4: Levantando Redis"
-docker compose up -d
+- **Backend:** Python, Flask
+- **Base de datos:** PostgreSQL
+- **Cache / Cola de tareas:** Redis
+- **Contenedores:** Docker + Docker Compose
+- **Orquestación de servicios:** Scripts en PowerShell
+- **Control de versiones:** Git + GitHub
 
-Write-Host "PASO 5: Entrando a la carpeta docker (microservicios)"
-Set-Location "../docker"
+---
 
-Write-Host "PASO 6: Levantando microservicios"
-docker-compose --env-file .env up --build -d
+## ⚠️ Requisitos previos
 
-Write-Host "Todos los servicios están levantados correctamente."
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- PowerShell 
+
+---
+
+## 📁 Estructura del repositorio
+
+```
+/docker-postgresql/    --> Configuración y datos persistentes de PostgreSQL
+/docker-redis/         --> Configuración de Redis
+/docker/               --> Archivos y configuración de los microservicios
+setup_ecommerce_noemoji.ps1  --> Script automático para levantar todo
+```
+
+---
+
+## 🛠️ Instalación y ejecución
+
+### 🔹 Opción 1: Paso por paso (manual)
+
+1. **Levantar PostgreSQL**
+
+   ```powershell
+   cd docker-postgresql
+   docker-compose --env-file .env up --build -d
+   ```
+
+2. **Levantar Redis**
+
+   ```powershell
+   cd ../docker-redis
+   docker compose up -d
+   ```
+
+3. **Levantar microservicios**
+
+   ```powershell
+   cd ../docker
+   docker-compose --env-file .env up --build -d
+   ```
+
+4. **Verificar contenedores activos**
+
+   ```bash
+   docker ps
+   ```
+
+---
+
+### 🔹 Opción 2: Automática (recomendada en Windows)
+
+Ejecutar el siguiente script para que todo el entorno se levante automáticamente:
+
+```powershell
+.\setup_ecommerce_noemoji.ps1
+```
+
+Este script realiza los tres pasos anteriores sin intervención del usuario.
+
+---
+
+## 📌 Notas adicionales
+
+- Asegurate de que el archivo `.env` esté bien configurado antes de ejecutar los servicios.
+- Los servicios levantan en segundo plano (`-d`) y reconstruyen imágenes si es necesario (`--build`).
+
+---
+
+## 👥 Miembros del equipo
+
+- [Lucas Candia]
+- [Fausto Basile]
+- [Mauricio Valdés]

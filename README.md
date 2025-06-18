@@ -88,7 +88,7 @@ Este script realiza los tres pasos anteriores sin intervención del usuario.
   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 - Tener en ejecucion docker (docker desktop en windows)
 - Controlar en el caso de tener instalado el motor de postgres en windows de detener el servicio
-  en services Tecla_Windows + R y services.msc. Detener servicio postgres.
+  en services Tecla_Windows + R y ejecutar services.msc. Detener servicio postgres.
 ---
 
 ## 👥 Miembros del equipo

@@ -83,7 +83,10 @@ Este script realiza los tres pasos anteriores sin intervención del usuario.
 
 - Asegurate de que el archivo `.env` esté bien configurado antes de ejecutar los servicios.
 - Los servicios levantan en segundo plano (`-d`) y reconstruyen imágenes si es necesario (`--build`).
-
+- Puede ser necesario para ejecutar "setup...ps1" en Windows habilitar la ejecucion de scrips para
+  eso uar elsiguiente comando:
+  Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+- Tener en ejecucion docker (docker desktop en windows)
 ---
 
 ## 👥 Miembros del equipo
